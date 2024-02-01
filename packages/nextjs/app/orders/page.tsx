@@ -127,17 +127,12 @@ const Orders: NextPage = () => {
   }, [openedHistoryData]);
 
   const confirmOrder = async (orderId: number) => {
-    console.log(orderId);
-
-    // Update the status in the existing data
     const updatedData = data.map(item => (item.orderid === orderId ? { ...item, status: "Accepted" } : item));
     console.log(updatedData);
 
-    // Find the specific updated item
     const updatedItem = updatedData.find(item => item.orderid === orderId);
     console.log(updatedItem);
 
-    // Ensure the item is found before proceeding
     if (updatedItem) {
       const packed = encodePacked(
         ["string", "string", "uint256", "string", "string"],
@@ -306,7 +301,6 @@ const Orders: NextPage = () => {
                   </div>
                 </tr>
               ))}
-              {/* row 1 */}
             </tbody>
           </table>
         ) : userIsDeliveryPerson ? (
@@ -320,7 +314,6 @@ const Orders: NextPage = () => {
             </div>
             <div>
               <table className="table-lg">
-                {/* head */}
                 <thead>
                   <tr>
                     <th></th>
@@ -347,7 +340,6 @@ const Orders: NextPage = () => {
                       </button>
                     </tr>
                   ))}
-                  {/* row 1 */}
                 </tbody>
               </table>
             </div>
