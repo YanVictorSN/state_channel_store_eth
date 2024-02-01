@@ -37,5 +37,10 @@
   },
   "resolutions": {
     "usehooks-ts@^2.7.2": "patch:usehooks-ts@npm:^2.7.2#./.yarn/patches/usehooks-ts-npm-2.7.2-fceffe0e43.patch"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.3",
+    "qrcode.react": "^3.1.0",
+    "react-qr-reader": "^3.0.0-beta-1"
   }
 }
