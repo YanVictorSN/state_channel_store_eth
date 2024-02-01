@@ -40,6 +40,14 @@ contract DeliveryStore is Ownable {
 		address deliveryPersonAddress
 	);
 
+	event ConfirmDelivery(
+		uint256 orderId,
+		address customer,
+		string product,
+		uint256 price,
+		DeliveryStatus status
+	);
+
 	enum DeliveryStatus {
 		Processing,
 		Accepted,
@@ -162,15 +170,17 @@ contract DeliveryStore is Ownable {
 			orders[_orderId].status == DeliveryStatus.EnRoute,
 			"Order must be in Processing state"
 		);
-		orders[_orderId].deliveryPersonAddress = _deliveryPersonAddress;
+
+		uint256 channelId = customerOpenChannels[msg.sender];
+		Channel storage associatedChannel = channels[channelId];
+		associatedChannel.isOpen = false;
 
 		emit ConfirmDelivery(
 			_orderId,
 			orders[_orderId].customer,
 			orders[_orderId].product,
 			orders[_orderId].price,
-			DeliveryStatus.Delivered,
-			_deliveryPersonAddress
+			DeliveryStatus.Delivered
 		);
 	}
 

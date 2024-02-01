@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     DeliveryStore: {
-      address: "0xa513E6E4b8f2a923D98304ec87F64353C4D5C853",
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
       abi: [
         {
           inputs: [
@@ -68,6 +68,43 @@ const deployedContracts = {
             },
           ],
           name: "ChannelOpened",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "orderId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "customer",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "product",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "price",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "enum DeliveryStore.DeliveryStatus",
+              name: "status",
+              type: "uint8",
+            },
+          ],
+          name: "ConfirmDelivery",
           type: "event",
         },
         {
@@ -167,7 +204,13 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [],
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_orderId",
+              type: "uint256",
+            },
+          ],
           name: "confirmDelivery",
           outputs: [],
           stateMutability: "nonpayable",

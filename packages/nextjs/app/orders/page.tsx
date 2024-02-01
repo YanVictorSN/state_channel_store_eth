@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { encodePacked, keccak256, toBytes, verifyMessage } from "viem";
-import { Address as useAccount, useWalletClient } from "wagmi";
+import { Address as AddressType, useAccount, useWalletClient } from "wagmi";
 import { AddressInput } from "~~/components/scaffold-eth";
 import { Address } from "~~/components/scaffold-eth";
 import { useScaffoldContractRead, useScaffoldContractWrite, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";

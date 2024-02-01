@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { encodePacked, keccak256, parseEther, toBytes } from "viem";
-import { Address as useAccount, useWalletClient } from "wagmi";
+import { Address as AddressType, useAccount, useWalletClient } from "wagmi";
 import { useScaffoldContractWrite, useScaffoldEventHistory } from "~~/hooks/scaffold-eth";
 import useSupabase from "~~/hooks/supabase/useSupabase";
 
@@ -180,21 +180,23 @@ const Store: NextPage = () => {
 
   return (
     <>
-      <div className="flex items-center ">
-        {productData.map((item, index) => (
-          <div key={index} className="card w-60 bg-base-100 shadow-xl">
-            <div className="card-body items-center text-center">
-              <h2 className="card-title">{item.product_name}</h2>
-              <p>{item.price}</p>
-              <div className="card-actions">
-                <button className="btn btn-primary" onClick={() => handleClick(item)}>
-                  {isChannelOpen ? "Buy" : "Open a channel"}
-                </button>
+      <section className="flex items-center justify-center p-20">
+        <div className="flex items-center ">
+          {productData.map((item, index) => (
+            <div key={index} className="card w-60 bg-base-100 shadow-xl">
+              <div className="card-body items-center text-center">
+                <h2 className="card-title">{item.product_name}</h2>
+                <p>{item.price}</p>
+                <div className="card-actions">
+                  <button className="btn btn-primary" onClick={() => handleClick(item)}>
+                    {isChannelOpen ? "Buy" : "Open a channel"}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </section>
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center z-50">
           <div className="bg-black bg-opacity-50 absolute inset-0"></div>
